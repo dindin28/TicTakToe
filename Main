@@ -1,0 +1,286 @@
+#include <iostream>
+#include <windows.h>
+#include <conio.h>
+using namespace std;
+unsigned short counter = 0;
+short key = NULL;
+bool flag = 0;
+/*
+flag = 0 --> 'X'
+flag = 1 --> 'O'
+*/
+char gamingField[3][3] = {
+	{NULL, NULL, NULL},
+	{NULL, NULL, NULL},
+	{NULL, NULL, NULL}
+};
+void showGF(char _gamingField[3][3]) {
+	cout << _gamingField[0][0] << "|" << _gamingField[0][1] << "|" << _gamingField[0][2] << endl;
+	cout << "-----" << endl;
+	cout << _gamingField[1][0] << "|" << _gamingField[1][1] << "|" << _gamingField[1][2] << endl;
+	cout << "-----" << endl;
+	cout << _gamingField[2][0] << "|" << _gamingField[2][1] << "|" << _gamingField[2][2] << endl;
+}
+char checkWin() {
+	if (gamingField[0][0] == 'X' && gamingField[1][0] == 'X' && gamingField[2][0] == 'X' ||
+		gamingField[0][1] == 'X' && gamingField[1][1] == 'X' && gamingField[2][1] == 'X' ||
+		gamingField[0][2] == 'X' && gamingField[1][2] == 'X' && gamingField[2][2] == 'X' ||
+		gamingField[0][0] == 'X' && gamingField[0][1] == 'X' && gamingField[0][2] == 'X' ||
+		gamingField[1][0] == 'X' && gamingField[1][1] == 'X' && gamingField[1][2] == 'X' ||
+		gamingField[2][0] == 'X' && gamingField[2][1] == 'X' && gamingField[2][2] == 'X' ||
+		gamingField[0][0] == 'X' && gamingField[1][1] == 'X' && gamingField[2][2] == 'X' ||
+		gamingField[0][2] == 'X' && gamingField[1][1] == 'X' && gamingField[2][0] == 'X') {
+		return 'X';
+	}
+	else if (
+		gamingField[0][0] == 'O' && gamingField[1][0] == 'O' && gamingField[2][0] == 'O' ||
+		gamingField[0][1] == 'O' && gamingField[1][1] == 'O' && gamingField[2][1] == 'O' ||
+		gamingField[0][2] == 'O' && gamingField[1][2] == 'O' && gamingField[2][2] == 'O' ||
+		gamingField[0][0] == 'O' && gamingField[0][1] == 'O' && gamingField[0][2] == 'O' ||
+		gamingField[1][0] == 'O' && gamingField[1][1] == 'O' && gamingField[1][2] == 'O' ||
+		gamingField[2][0] == 'O' && gamingField[2][1] == 'O' && gamingField[2][2] == 'O' ||
+		gamingField[0][0] == 'O' && gamingField[1][1] == 'O' && gamingField[2][2] == 'O' ||
+		gamingField[0][2] == 'O' && gamingField[1][1] == 'O' && gamingField[2][0] == 'O') {
+		return 'O';
+	}
+	else return 0;
+}
+int setPosition(int _key) {
+	switch (_key) {
+	case 1:
+		if (gamingField[2][0] != NULL)
+			return 0;
+		else {
+			if (flag == 0)
+				gamingField[2][0] = 'X';
+			else {
+				gamingField[2][0] = 'O';
+				return 1;
+			}
+		}
+		break;
+	case 2:
+		if (gamingField[2][1] != NULL)
+			return 0;
+		else {
+			if (flag == 0)
+				gamingField[2][1] = 'X';
+			else {
+				gamingField[2][1] = 'O';
+				return 1;
+			}
+			break;
+	case 3:
+		if (gamingField[2][2] != NULL)
+			return 0;
+		else {
+			if (flag == 0)
+				gamingField[2][2] = 'X';
+			else {
+				gamingField[2][2] = 'O';
+				return 1;
+			}
+		}
+		break;
+	case 4:
+		if (gamingField[1][0] != NULL)
+			return 0;
+		else {
+			if (flag == 0)
+				gamingField[1][0] = 'X';
+			else {
+				gamingField[1][0] = 'O';
+				return 1;
+			}
+		}
+		break;
+	case 5:
+		if (gamingField[1][1] != NULL)
+			return 0;
+		else {
+			if (flag == 0)
+				gamingField[1][1] = 'X';
+			else {
+				gamingField[1][1] = 'O';
+				return 1;
+			}
+		}
+		break;
+	case 6:
+		if (gamingField[1][2] != NULL)
+			return 0;
+		else {
+			if (flag == 0)
+				gamingField[1][2] = 'X';
+			else {
+				gamingField[1][2] = 'O';
+				return 1;
+			}
+		}
+		break;
+	case 7:
+		if (gamingField[0][0] != NULL)
+			return 0;
+		else {
+			if (flag == 0)
+				gamingField[0][0] = 'X';
+			else {
+				gamingField[0][0] = 'O';
+				return 1;
+			}
+		}
+		break;
+	case 8:
+		if (gamingField[0][1] != NULL)
+			return 0;
+		else {
+			if (flag == 0)
+				gamingField[0][1] = 'X';
+			else {
+				gamingField[0][1] = 'O';
+				return 1;
+			}
+		}
+		break;
+	case 9:
+		if (gamingField[0][2] != NULL)
+			return 0;
+		else {
+			if (flag == 0)
+				gamingField[0][2] = 'X';
+			else {
+				gamingField[0][2] = 'O';
+				return 1;
+			}
+		}
+		break;
+	default:
+		return -1;
+		break;
+		}
+	}
+}
+int checkPosition(int _key) {
+	switch (_key) {
+	case 1:
+		if (gamingField[2][0] != NULL)
+			return 0;
+		else return 1;
+		break;
+	case 2:
+		if (gamingField[2][1] != NULL)
+			return 0;
+		else return 1;
+			break;
+	case 3:
+		if (gamingField[2][2] != NULL)
+			return 0;
+		else return 1;
+		break;
+	case 4:
+		if (gamingField[1][0] != NULL)
+			return 0;
+		else return 1;
+		break;
+	case 5:
+		if (gamingField[1][1] != NULL)
+			return 0;
+		else return 1;
+		break;
+	case 6:
+		if (gamingField[1][2] != NULL)
+			return 0;
+		else return 1;
+		break;
+	case 7:
+		if (gamingField[0][0] != NULL)
+			return 0;
+		else return 1;
+		break;
+	case 8:
+		if (gamingField[0][1] != NULL)
+			return 0;
+		else return 1;
+		break;
+	case 9:
+		if (gamingField[0][2] != NULL)
+			return 0;
+		else return 1;
+		break;
+	default:
+		return -1;
+		break;
+	}
+}
+
+int main() {
+	system("title Tic Tac Toe");
+	char whoStart;
+	do {
+		cout << "Who's start first?(O/X): ";
+		cin >> whoStart;
+		if (whoStart == 'X')
+			flag = 0;
+		else flag = 1;
+		system("cls");
+		if (whoStart != 'O' && whoStart != 'X')
+			cout << "Wrong choose. Type O or X" << endl;
+	} while (whoStart != 'O' && whoStart != 'X');
+	while (!checkWin() && counter < 9) {
+		if (flag == 1)
+			cout << "That's turn for 0, choose your position at numpad" << endl;
+		else cout << "That's turn for X, choose your position at numpad" << endl;
+		while (true) {
+			showGF(gamingField);
+			switch (_getch()) {
+			case 49:
+				key = 1;
+				break;
+			case 50:
+				key = 2;
+				break;
+			case 51:
+				key = 3;
+				break;
+			case 52:
+				key = 4;
+				break;
+			case 53:
+				key = 5;
+				break;
+			case 54:
+				key = 6;
+				break;
+			case 55:
+				key = 7;
+				break;
+			case 56:
+				key = 8;
+				break;
+			case 57:
+				key = 9;
+				break;
+			default:
+				key = 0;
+				break;
+			}
+			system("cls");
+			if (checkPosition(key)) {
+				setPosition(key);
+				counter++;
+				break;
+			}
+			else if (checkPosition(key) == -1)
+				cout << "Wrong key" << endl;
+			else if (checkPosition(key) == 0)
+				cout << "Cant be" << endl;
+		}
+		if (flag == 1)
+			flag = 0;
+		else flag = 1;
+	}
+	if (checkWin() != 0)
+		cout << checkWin() << " is a Winner. Congratulations!!!" << endl;
+	else cout << "There is no winner" << endl;
+	system("pause");
+}
